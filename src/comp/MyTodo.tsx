@@ -8,7 +8,7 @@ interface TodoProps {
   AddTODO: (e: React.FormEvent) => void;
 }
 const MyTodo: React.FC<TodoProps> = ({ Todo, setTodo, AddTODO }) => {
-  const inputRef = useRef<HTMLInputElement>(null); // when i didn't enter null here i was geting error at line 33 y??
+  // const inputRef = useRef<HTMLInputElement>(null); // when i didn't enter null here i was geting error at line 33 y??
 
   const onChangeHandler = (e: { target: HTMLInputElement }) => {
     setTodo(e.target.value);
@@ -20,11 +20,11 @@ const MyTodo: React.FC<TodoProps> = ({ Todo, setTodo, AddTODO }) => {
       <form
         onSubmit={(e) => {
           AddTODO(e);
-          inputRef.current?.blur;
+          // inputRef.current?.blur;
         }}
       >
         <input
-          ref={inputRef}
+          // ref={inputRef}
           className="input_Field"
           type="text"
           placeholder="Enter TODOs"
