@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import MyTodo from "./comp/MyTodo";
+import TodoList from "./comp/TodoList";
+import { TODOsProps } from "./modal";
 
-function App() {
+const App = () => {
+  const [Todo, setTodo] = useState<string>("");
+  const [TODOs, setTODOs] = useState<TODOsProps[]>([]);
+
+  const AddTODO = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (Todo !== "") {
+      setTODOs([...TODOs, { id: Date.now(), Todo: Todo, isDone: false }]); // can also write as setTODOs([...TODOs, { id: Date.now(), Todo, isDone: false }]);
+    }
+    setTodo("");
+  };
+  console.log("Todo", TODOs);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MyTodo
+        setTodo={setTodo}
+        Todo={Todo}
+        AddTODO={AddTODO}
+        // TODOs={TODOs}
+        // setTODOs={setTODOs}
+      />
+      <TodoList TODOs={TODOs} setTODOs={setTODOs} />
     </div>
   );
-}
+};
 
 export default App;
