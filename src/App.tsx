@@ -5,9 +5,8 @@ import TodoList from "./comp/TodoList";
 import { TODOsProps } from "./modal";
 const App = () => {
   const [Todo, setTodo] = useState<string>("");
-  const [TODOs, setTODOs] = useState<TODOsProps[]>([
-    { id: 1653038825256, Todo: "cachbcsaj", isDone: false },
-  ]);
+  const [NewTodo, setNewTodo] = useState<string>("");
+  const [TODOs, setTODOs] = useState<TODOsProps[]>([]);
 
   useEffect(() => {
     const dataV: any = localStorage.getItem("TODOs");
@@ -15,25 +14,28 @@ const App = () => {
 
     const data: any = localStorage.getItem("TODOs");
     const TODOs: any = JSON.parse(data);
-    // console.log("TODOs", typeof TODOs, TODOs);
+    console.log("TODOs", typeof TODOs, TODOs);
     if (TODOs) {
       setTODOs(TODOs);
     }
   }, []);
-
   useEffect(() => {
-    localStorage.setItem("TODOs", JSON.stringify(TODOs));
-  }, [TODOs]);
+    if (NewTodo === "yes") {
+      localStorage.setItem("TODOs", JSON.stringify(TODOs));
+    }
+  }, [NewTodo]);
 
   const AddTODO = (e: React.FormEvent) => {
     e.preventDefault();
     const result = TODOs.map((e) => e.Todo.toLocaleLowerCase()).includes(Todo);
     if (Todo !== "" && !result) {
-      setTODOs([...TODOs, { id: Date.now(), Todo: Todo, isDone: false }]); // can also write as setTODOs([...TODOs, { id: Date.now(), Todo, isDone: false }]);
+      setNewTodo("yes");
+      setTODOs([...TODOs, { id: Date.now(), Todo, isDone: false }]);
     }
+
     setTodo("");
   };
-  // console.log("Todo", TODOs);
+  console.log("NewTodo", NewTodo);
 
   return (
     <div className="App">

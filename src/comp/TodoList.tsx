@@ -9,7 +9,9 @@ interface TodoList {
 const TodoList = ({ TODOs, setTODOs, Todo, setTodo }: TodoList) => {
   // console.log("first", typeof TODOs, TODOs);
 
-  const editTodo = () => {};
+  const editTodo = (e: { target: HTMLInputElement }, i: any) => {
+    console.log("test");
+  };
 
   return (
     <>
@@ -23,7 +25,7 @@ const TodoList = ({ TODOs, setTODOs, Todo, setTodo }: TodoList) => {
               <span className="icon">
                 <i
                   className="fa fa-pencil-square-o"
-                  onClick={editTodo}
+                  onClick={(ev: any) => editTodo(ev, e.id)}
                   aria-hidden="true"
                 ></i>
                 <i className="fa fa-trash-o" aria-hidden="true"></i>
