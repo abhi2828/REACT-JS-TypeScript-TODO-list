@@ -56,20 +56,39 @@ form {
   transform: scale(0.8);
   box-shadow: 0 0 5px #4f4f4f;
 }
-.itemsList {
+.todos_single {
   width: 30vw;
   height: 40px;
   background-image: url("https://img.freepik.com/free-photo/crumpled-yellow-paper-background-close-up_60487-2390.jpg?size=626&ext=jpg");
   /* background: gold; */
   margin: 10px 30px;
-  line-height: 3;
+  justify-content: space-between;
+  padding: 0 10px;
 }
-ol {
+/* ol {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+} */
+.pointer {
+  cursor: pointer;
 }
 
+.todos_single:focus {
+  outline: none;
+}
+.todo_text {
+  line-height: 40px;
+  outline: none;
+}
+.icon {
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 45px;
+}
+i.fa.fa-trash-o {
+  margin: 0 10px;
+}
 @media (max-width: 800px) {
 }
 @media (min-width: 1100px) {
