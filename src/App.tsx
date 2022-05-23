@@ -10,11 +10,9 @@ const App = () => {
 
   useEffect(() => {
     const dataV: any = localStorage.getItem("TODOs");
-    console.log(JSON.parse(dataV));
 
     const data: any = localStorage.getItem("TODOs");
     const TODOs: any = JSON.parse(data);
-    console.log("TODOs", typeof TODOs, TODOs);
     if (TODOs) {
       setTODOs(TODOs);
     }
@@ -35,7 +33,6 @@ const App = () => {
 
     setTodo("");
   };
-  console.log("NewTodo", NewTodo);
 
   return (
     <div className="App">

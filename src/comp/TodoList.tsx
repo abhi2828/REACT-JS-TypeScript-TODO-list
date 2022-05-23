@@ -7,8 +7,6 @@ interface TodoList {
   Todo: string;
 }
 const TodoList = ({ TODOs, setTODOs, Todo, setTodo }: TodoList) => {
-  // console.log("first", typeof TODOs, TODOs);
-
   const editTodo = (e: { target: HTMLInputElement }, i: any) => {
     console.log("test");
   };
