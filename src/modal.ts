@@ -1,5 +1,6 @@
-export interface TODOsProps{
+export interface TodoInputProps{
     id:number
-    Todo:string
+    TodoInput:string
     isDone:Boolean
 }
+
