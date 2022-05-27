@@ -15,6 +15,7 @@ const ToDo = () => {
 
   useEffect(() => {
     localStorage.setItem("TodoList", JSON.stringify(Todos));
+    // let unique = [...new Set(Todos.map((ele) => ele.TodoInput))]
   }, [Todos]);
 
   const addTodo = (e: { target: HTMLInputElement }) => {
@@ -23,7 +24,16 @@ const ToDo = () => {
 
   const submit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (TodoInput !== "") {
+
+    let data = Todos.map((ele) => {
+      return (
+        ele.TodoInput.trim().toLocaleLowerCase() ===
+        TodoInput.trim().toLocaleLowerCase()
+      );
+    });
+    console.log("data", data.includes(true));
+
+    if (TodoInput !== "" && !data.includes(true)) {
       setTodos((Todos) => [
         ...Todos,
         {
