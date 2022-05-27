@@ -28,8 +28,9 @@ const ToDo = () => {
         ...Todos,
         {
           id: Date.now(),
-          TodoInput,
+          TodoInput: TodoInput.trim(),
           isDone: false,
+          isEdit: false,
         },
       ]);
     }
@@ -49,7 +50,7 @@ const ToDo = () => {
         <input type="submit" value="Add" className="input_Add" />
       </form>
 
-      <TodoList Todos={Todos} />
+      <TodoList Todos={Todos} setTodos={setTodos} />
     </>
   );
 };
