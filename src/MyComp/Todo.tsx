@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { TodoInputProps } from "../modal";
 import TodoList from "./TodoList";
 
@@ -15,7 +16,6 @@ const ToDo = () => {
 
   useEffect(() => {
     localStorage.setItem("TodoList", JSON.stringify(Todos));
-    // let unique = [...new Set(Todos.map((ele) => ele.TodoInput))]
   }, [Todos]);
 
   const addTodo = (e: { target: HTMLInputElement }) => {
@@ -43,6 +43,25 @@ const ToDo = () => {
           isEdit: false,
         },
       ]);
+      toast.success("Todo added sucessfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      });
+    } else {
+      toast.warning("Todo can't be empty", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      });
     }
     setTodoInput("");
   };

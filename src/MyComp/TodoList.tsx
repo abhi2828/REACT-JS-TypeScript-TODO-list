@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { TodoInputProps } from "../modal";
 
 const TodoList = ({ Todos, setTodos }: any) => {
@@ -14,17 +15,37 @@ const TodoList = ({ Todos, setTodos }: any) => {
 
   const inputEdit = (event: React.FormEvent<HTMLInputElement>, id: number) => {
     event.preventDefault();
-    setTodos(
-      Todos.map((ele: TodoInputProps) => {
-        return ele.id === id
-          ? { ...ele, TodoInput: event.currentTarget.value }
-          : ele;
-      })
-    );
+
+    let data = Todos.map((ele: any) => {
+      return (
+        ele.TodoInput.trim().toLocaleLowerCase() ===
+        event.currentTarget.value.trim().toLocaleLowerCase()
+      );
+    });
+    console.log("data", data.includes(true), event.currentTarget.value);
+
+    if (event.currentTarget.value !== "" && !data.includes(true)) {
+      setTodos(
+        Todos.map((ele: TodoInputProps) => {
+          return ele.id === id
+            ? { ...ele, TodoInput: event.currentTarget.value }
+            : ele;
+        })
+      );
+    }
   };
 
   const DeleteTodo = (id: number) => {
     setTodos(Todos.filter((ele: TodoInputProps) => ele.id !== id));
+    toast.success("Todo deleted", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+    });
   };
 
   const CompleteTodo = (id: number) => {
@@ -44,7 +65,6 @@ const TodoList = ({ Todos, setTodos }: any) => {
               key={e.id}
               onSubmit={(event: any) => {
                 event.preventDefault();
-                console.log("abhay", e.id);
                 setTodos(
                   Todos.map((ele: TodoInputProps) => {
                     return ele.id === e.id ? { ...ele, isEdit: false } : ele;
