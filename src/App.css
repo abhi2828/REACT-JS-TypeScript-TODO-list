@@ -138,4 +138,7 @@ input.todo_text_edit {
     line-height: 45px;
     margin: 4px;
   }
+  .Toastify__toast {
+    margin: 10px 30px;
+  }
 }
