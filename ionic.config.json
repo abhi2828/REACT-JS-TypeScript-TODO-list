@@ -1,0 +1,7 @@
+{
+    "name": "myTodo",
+    "integrations": {
+      "capacitor": {}
+    },
+    "type": "react"
+  }

@@ -1,0 +1,8 @@
+{
+    "appId": "io.ionic.myTodo",
+    "appName": "myTodo",
+    "bundledWebRuntime": false,
+    "npmClient": "npm",
+    "webDir": "build",
+    "cordova": {}
+  }
